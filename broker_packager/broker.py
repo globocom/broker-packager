@@ -2,7 +2,7 @@ import time
 import sys
 import json
 import stomp
-from installer import Installer
+from broker_packager.installer import Installer
 
 
 class Message(object):
@@ -54,12 +54,12 @@ def connect_and_subscribe(conn, destination, selector):
         headers = {'selector' : selector})
 
 class BrokerListener(stomp.ConnectionListener):
-    def __init__(self, conn, destination, selector, json_paths):
+    def __init__(self, conn, destination, selector, installer_configs):
         self.conn = conn
         self.destination = destination
         self.selector = selector
-        self.json_paths = json_paths
-        self.installer = Installer()
+        self.installer_configs = installer_configs
+        self.installer = Installer(installer_configs)
 
     def on_error(self, headers, message):
         print('received an error "%s"' % message)
@@ -67,11 +67,10 @@ class BrokerListener(stomp.ConnectionListener):
     def on_message(self, headers, message):
         message = Message(message)
         print('received a message "%s"' % message.to_json())
-        paths = {}
-        for path in self.json_paths:
-            paths[path] = message.get_path(*self.json_paths[path].split('.'))
-        print('paths parsed "%s"' % str(paths))
-        self.installer.install(paths)
+        for path in self.installer_configs:
+            self.installer_configs[path]['paths'] = message.get_path(*self.installer_configs[path]['json'].split('.'))
+        print('paths parsed "%s"' % str(self.installer_configs[path]['paths']))
+        self.installer.install(self.installer_configs)
         print('processed message and installed packages')
 
     def on_disconnected(self):
@@ -79,7 +78,7 @@ class BrokerListener(stomp.ConnectionListener):
         connect_and_subscribe(self.conn, self.destination, self.selector)
 
 class BrokerConnector(object):
-    def __init__(self, host, port, destination, selector, json_paths):
+    def __init__(self, host, port, destination, selector, installer_configs):
         conn = stomp.Connection(
             host_and_ports=[(host, port)],
             reconnect_sleep_initial=10,
@@ -89,7 +88,7 @@ class BrokerConnector(object):
             reconnect_attempts_max=((24 * 60 * 60) / 300) * 2,  # Almost two days
             heartbeats=(0, 0)
         )
-        conn.set_listener('broker-packager', BrokerListener(conn, destination, selector, json_paths))
+        conn.set_listener('broker-packager', BrokerListener(conn, destination, selector, installer_configs))
         connect_and_subscribe(conn, destination, selector)
         self.delay()
     

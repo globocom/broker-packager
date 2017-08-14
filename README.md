@@ -4,8 +4,6 @@ Package Manager based on broker messages
 
 ## Install
 
-Needs pip > 9.0.1
-
     pip install broker-packager
 
 ## Usage

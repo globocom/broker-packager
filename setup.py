@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="broker-packager",
+    name="broker_packager",
     version="0.0.1",
     description="Package Manager based on broker messages",
     author="Big Data",
@@ -15,4 +15,5 @@ setup(
         "stomp.py==4.1.18"
     ],
     packages=find_packages(),
+    scripts=["script/broker-packager"]
 )
