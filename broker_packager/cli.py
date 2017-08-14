@@ -15,7 +15,7 @@ def bus():
 @click.option('--language', '-l', help='Language name', type=click.Choice(['python', 'r']), required=True)
 @click.option('--name', '-n', help='Package Name', required=True)
 @click.option('--version', '-v', help='Package Version', default="")
-@click.option('--git', '-g', help='Install from git', type=click.BOOL, default=False)
+@click.option('--git', '-g', help='Install from git', default=False, is_flag=True)
 @click.option('--pip_paths', '-i', help='Pip paths', multiple=True, default=["pip"])
 @click.option('--log_file', '-f', help='LogFile')
 def install(language, name, version, git, pip_paths, log_file):
