@@ -1,6 +1,3 @@
-#!/usr/bin/env python
+#!/usr/bin/env bash
 
-from brokerpackager import cli
-
-if __name__ == '__main__':
-    cli.installer()
+python -m brokerpackager.cli

@@ -56,3 +56,6 @@ def monitor(endpoint, port, destination, selector, python_json_path, pip_paths, 
     BrokerConnector(endpoint, port, destination, selector, installer_configs)
 
 installer = click.CommandCollection(sources=[bus])
+
+if __name__ == '__main__':
+    installer()
