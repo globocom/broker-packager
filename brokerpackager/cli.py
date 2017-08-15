@@ -1,9 +1,9 @@
 import os
 import re
 import click
-from broker_packager.python.manager import PyManager
-from broker_packager.r.manager import RManager
-from broker_packager.broker import BrokerConnector
+from brokerpackager.python.manager import PyManager
+from brokerpackager.r.manager import RManager
+from brokerpackager.broker import BrokerConnector
 
 
 @click.group()

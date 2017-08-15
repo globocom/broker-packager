@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="broker_packager",
+    name="brokerpackager",
     version="0.0.1",
     description="Package Manager based on broker messages",
     author="Big Data",

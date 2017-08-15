@@ -1,5 +1,5 @@
 import rpy2.robjects.packages as rpackages
-from broker_packager.base.manager import BaseManager
+from brokerpackager.base.manager import BaseManager
 
 class RManager(BaseManager):
 

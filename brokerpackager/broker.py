@@ -2,7 +2,7 @@ import time
 import sys
 import json
 import stomp
-from broker_packager.installer import Installer
+from brokerpackager.installer import Installer
 
 
 class Message(object):

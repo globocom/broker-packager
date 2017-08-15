@@ -4,7 +4,7 @@ Package Manager based on broker messages
 
 ## Install
 
-    pip install broker-packager
+    pip install brokerpackager
 
 ## Usage
 

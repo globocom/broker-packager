@@ -1,5 +1,5 @@
-from broker_packager.python.manager import PyManager
-from broker_packager.r.manager import RManager
+from brokerpackager.python.manager import PyManager
+from brokerpackager.r.manager import RManager
 
 class Installer(object):
     def __init__(self, config={}):
