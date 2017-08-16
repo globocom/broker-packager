@@ -1,10 +1,10 @@
 # encoding: utf-8
 
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(
     name="brokerpackager",
-    version="0.0.3",
+    version="0.0.4",
     description="Package Manager based on broker messages",
     author="Big Data",
     author_email="bigdata@corp.globo.com",
@@ -14,6 +14,6 @@ setup(
         "rpy2==2.8.6",
         "stomp.py==4.1.18"
     ],
-    packages=find_packages(),
+    packages=['brokerpackager'],
     scripts=["script/broker-packager"]
 )
