@@ -1,5 +1,5 @@
 import subprocess
-from brokerpackager.base.manager import BaseManager
+from .base import BaseManager
 
 class PyManager(BaseManager):
 
