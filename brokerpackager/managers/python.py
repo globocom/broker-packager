@@ -15,7 +15,7 @@ class PyManager(BaseManager):
             elif version:           
                 self.do_install('{}=={}'.format(package, version), pip_paths)
             else:
-                self.do_install('{}'.format(package), pip_paths, '-U')                                        
+                self.do_install('{}'.format(package), pip_paths, '-U', '--upgrade-strategy', 'only-if-needed')                                        
 
     def install_list(self, package_list, extra_config={}):
         pip_paths = extra_config.get('pip_paths', ['pip'])
