@@ -23,5 +23,5 @@ class PyManager(BaseManager):
             package = package_item.get('name')
             version = package_item.get('version')
             git = package_item.get('git')
-            self.install(package, version, git)
+            self.install(package, version, git, pip_paths)
 
